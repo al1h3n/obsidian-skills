@@ -10,8 +10,8 @@ Light agent skills for Obsidian vaults. Vault-agnostic. Never edit user files: o
 ## Install
 
 ```bash
-bunx skills add CREATOR/REPO --list
-bunx skills add CREATOR/REPO -s daily-brief -s analyze-connections -g
+bunx skills add al1h3n/obsidian-skills --list
+bunx skills add al1h3n/obsidian-skills -s daily-brief -s analyze-connections -g
 ```
 
 `-s` = `--skill`. `-g` = global, one install serves every vault. Add `-a claude-code` to pick an agent.
