@@ -4,14 +4,16 @@ Light agent skills for Obsidian vaults. Vault-agnostic. Never edit user files: o
 
 | Skill | Does |
 |---|---|
-| `daily-brief` | Recent notes + weather + email into one dated brief |
+| `period-brief` | Reusable brief engine for a caller-specified number of days |
+| `daily-brief` | `period-brief` with a fixed 1-day lookback |
+| `weekly-brief` | `period-brief` with a fixed 7-day lookback |
 | `analyze-connections` | Finds missing `[[links]]`, writes linked copies |
 
 ## Install
 
 ```bash
 bunx skills add al1h3n/obsidian-skills --list
-bunx skills add al1h3n/obsidian-skills -s daily-brief -s analyze-connections -g
+bunx skills add al1h3n/obsidian-skills -s period-brief -s daily-brief -s weekly-brief -s analyze-connections -g
 ```
 
 `-s` = `--skill`. `-g` = global, one install serves every vault. Add `-a claude-code` to pick an agent.
@@ -20,13 +22,17 @@ bunx skills add al1h3n/obsidian-skills -s daily-brief -s analyze-connections -g
 
 ```
 skills/
+  period-brief/SKILL.md
   daily-brief/SKILL.md
+  weekly-brief/SKILL.md
   analyze-connections/SKILL.md
 ```
 
-Folder name must equal `name` in SKILL.md frontmatter.
+Folder name must equal `name` in SKILL.md frontmatter. The daily and weekly entry points rely on the `period-brief` skill, so install it alongside either wrapper.
 
 ## Use
 
-- `daily-brief`: give vault path(s). First run asks city and email source, saves to `AI System/daily-brief.config.md`.
+- `period-brief`: provide a number of days and vault path(s). First run asks for city and email source, saves setup in `AI System/period-brief.config.md`.
+- `daily-brief`: fixed 1-day period; uses the same brief engine and configuration.
+- `weekly-brief`: fixed 7-day period; uses the same brief engine and configuration.
 - `analyze-connections`: give vault and folder path. Review copies in `AI System/`, copy over originals by hand.
